@@ -1,0 +1,51 @@
+<!-- <div>
+    <h1>My Quotes</h1>
+    <hr>
+    <ul>
+        <li *ngFor='let quote of quotes'>
+            {{quote.name}}
+            <app-quote-author *ngIf='quote.autho'[quote]='quote'></app-quote-author>
+        </li>
+    </ul>
+</div> -->
+
+<!-- <h1>My Quotes</h1>
+<hr>
+<ul>
+    <div *ngFor='let quote of quotes;let i = index'>
+        <li appStrikethrough>{{quote.name}} due on {{quote.completeDate|date|uppercase}}</li>
+        <button (click)='quoteComplete(true)'>Up Vote</button>
+        <button (click)='quoteComplete(true)'>Dwn Vote</button><br>
+        <button (click)='toggleAuthor(i)'>Toggle Author</button><br><br>
+        <app-quote-author *ngIf='quote.showAuthor' [quote]='quote' (isComplete) = 'deleteGoal($event,i)'></app-quote-author>
+    </div>
+</ul>
+<p *ngIf='quotes.length > 5'>You have too many quotes</p> -->
+<div class="container-fluid">
+    <h1 style="text-align: center;">My Quotes</h1>
+    <hr>
+
+    <div class="row">
+        <div style="background-color:rgb(231, 184, 231);border-radius: 5px;padding: 15px;" class="col-md-6">
+            <div *ngFor='let quote of quotes;let i = index'>
+                <div>
+                    <h6 id={{i}} appStrikethrough>{{quote.name}}<br><i> Posted on {{quote.completeDate|date|uppercase}}</i></h6>
+                    <button (click)='quoteComplete(true)'>Up Vote</button> => <= 
+                    <button (click)='quoteComplete(true)'>Dwn Vote</button><br><br>
+                    <button (click)='toggleAuthor(i)' class="btn btn-primary">Toggle Author</button>
+                </div>
+
+                <div *ngIf='quote.showAuthor'>
+                    <app-quote-author [quote]='quote' (isComplete)='deleteQuote($event,i)'></app-quote-author>
+                </div>
+            </div>
+        </div>
+     <!-- </div> -->
+     <!-- <div class="row"> -->
+        <div class="col-md-6">
+            <app-quote-form (addQuote)="addNewQuote($event)"></app-quote-form>
+        </div>
+    </div>
+
+    <p *ngIf='quotes.length > 100'>You have too many quotes</p>
+</div>
